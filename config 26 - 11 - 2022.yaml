@@ -144,7 +144,7 @@ proxy-providers:
   "ID":
     type: http
     path: "./confs/ID.yaml"
-    url: https://raw.githubusercontent.com/wikann/Akun/main/ID.yaml
+    url: https://raw.githubusercontent.com/wikann/Akun/main/ID.yaml?token=GHSAT0AAAAAAB3UYKPKPHARU656HMIXJ62CY4CFKEQ
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
@@ -152,7 +152,7 @@ proxy-providers:
   "SG":
     type: http
     path: "./confs/SG.yaml"
-    url: https://raw.githubusercontent.com/wikann/Akun/main/SG.yaml
+    url: https://raw.githubusercontent.com/wikann/Akun/main/SG.yaml?token=GHSAT0AAAAAAB3UYKPKTTUNHTWP7QGDIWQGY4CFKZQ
     health-check:
       enable: true
       url: http://cp.cloudflare.com/generate_204
