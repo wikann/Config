@@ -81,7 +81,7 @@ rule-providers:
     interval: 100
 proxy-providers:
   "ID":
-    type: http
+    type: file
     path: "./confs/ID.yaml"
     url: https://raw.githubusercontent.com/wikann/Akun/main/ID.yaml?token=GHSAT0AAAAAAB45QQI54T7CTPPYAUWTXBOOY5QX2AA
     health-check:
@@ -89,7 +89,7 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
       interval: 300
   "SG":
-    type: http
+    type: file
     path: "./confs/SG.yaml"
     url: https://raw.githubusercontent.com/wikann/Akun/main/SG.yaml?token=GHSAT0AAAAAAB45QQI4YNSIT3UINGQPYKE2Y5QX2OA
     health-check:
