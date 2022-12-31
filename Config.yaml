@@ -86,7 +86,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/wikann/Akun/main/ID.yaml?token=GHSAT0AAAAAAB45QQI54T7CTPPYAUWTXBOOY5QX2AA
     health-check:
       enable: true
-      url: http://cp.cloudflare.com/generate_204
+      url: http://www.gstatic.com/generate_204
       interval: 300
   "SG":
     type: http
@@ -94,7 +94,7 @@ proxy-providers:
     url: https://raw.githubusercontent.com/wikann/Akun/main/SG.yaml?token=GHSAT0AAAAAAB45QQI4YNSIT3UINGQPYKE2Y5QX2OA
     health-check:
       enable: true
-      url: http://cp.cloudflare.com/generate_204
+      url: http://www.gstatic.com/generate_204
       interval: 300
 proxy-groups:
 - name: PRANA
@@ -126,7 +126,7 @@ proxy-groups:
   use:
   - "ID"
   - "SG"
-  url: http://cp.cloudflare.com/generate_204
+  url: http://www.gstatic.com/generate_204
   interval: '300'
   tolerance: '150'
 - name: Instagram
