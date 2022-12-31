@@ -143,7 +143,7 @@ rule-providers:
     type: http
     behavior: classical
     url : https://raw.githubusercontent.com/wikann/Rule/main/Akrab.yaml
-    path: "./rule_provider/Whatsapp.yaml"
+    path: "./rule_provider/Akrab.yaml"
     interval: 100
   Rule_YouTube:
     type: http
@@ -167,7 +167,7 @@ rule-providers:
     type: http
     behavior: classical
     url: https://github.com/blackmatrix7/ios_rule_script/blob/master/rule/Clash/Netflix/Netflix.yaml
-    path: "./rule_provider/streaming.yaml"
+    path: "./rule_provider/Netflix.yaml"
     interval: 100
   Rule_TikTok:
     type: http
@@ -185,7 +185,7 @@ rule-providers:
     type: http
     behavior: classical
     url: https:https://raw.githubusercontent.com/wikann/Rule/main/bank.yaml
-    path: "./rule_provider/Shopee.yaml"
+    path: "./rule_provider/Rule_Bank.yaml"
     interval: 100
   Rule_Telegram:
     type: http
