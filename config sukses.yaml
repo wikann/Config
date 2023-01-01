@@ -116,49 +116,49 @@ proxies:
 rule-providers:
   Akrab:
     type: file
-    behavior: domain
+    behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/Direct.yaml
     path: "./rule_provider/Akrab.yaml"
     interval: 100
   Bank:
     type: file
-    behavior: domain
+    behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/Direct.yaml
     path: "./rule_provider/Bank.yaml"
     interval: 100
   ADS:
     type: file
-    behavior: domain
+    behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/Ads.yaml
     path: "./rule_provider/ads.yaml"
     interval: 100
   Instagram:
     type: file
-    behavior: domain
+    behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/Instagram.yaml
     path: "./rule_provider/ig.yaml"
     interval: 100
   Facebook:
     type: file
-    behavior: domain
+    behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/Facebook.yaml
     path: "./rule_provider/fb.yaml"
     interval: 100
   Twitter:
     type: file
-    behavior: domain
+    behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/Twitter.yaml
     path: "./rule_provider/tw.yaml"
     interval: 100
   YouTube:
     type: file
-    behavior: domain
+    behavior: classical
     path: "./rule_provider/Youtube.yaml"
     url: https://raw.githubusercontent.com/wikann/Rule/main/Youtube.yaml
     interval: 100
   Speedtest:
     type: file
-    behavior: domain
+    behavior: classical
     path: "./rule_provider/Speedtest.yaml"
     url: https://raw.githubusercontent.com/wikann/Rule/main/Speedtest.yaml
     interval: 100
@@ -170,12 +170,12 @@ rule-providers:
     interval: 100
   Streaming:
     type: file
-    behavior: domain
+    behavior: classical
     path: "./rule_provider/streaming.yaml"
     interval: 100
   Telegram:
     type: file
-    behavior: domain
+    behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/Telegram.yaml
     path: "./rule_provider/telegram.yaml"
     interval: 100
@@ -348,4 +348,4 @@ rules:
 - RULE-SET,ADS,REJECT
 - RULE-SET,Akrab,DIRECT
 - RULE-SET,Bank,Bank
-- MATCH,GLOBAL
+- MATCH,PRANA
