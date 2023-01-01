@@ -129,7 +129,7 @@ rule-providers:
   ADS:
     type: http
     behavior: classical
-    url: https://raw.githubusercontent.com/wikann/Rule/main/Ads.yaml
+    url: https://raw.githubusercontent.com/wikann/Rule/main/ADS.yaml
     path: "./rule_provider/ads.yaml"
     interval: 100
   Instagram:
