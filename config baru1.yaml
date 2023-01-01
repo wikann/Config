@@ -127,7 +127,7 @@ rule-providers:
     path: "./rule_provider/Bank.yaml"
     interval: 100
   ADS:
-    type: http
+    type: file
     behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/Ads.yaml
     path: "./rule_provider/ads.yaml"
