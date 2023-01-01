@@ -120,6 +120,12 @@ rule-providers:
     url: https://raw.githubusercontent.com/wikann/Rule/main/Direct.yaml
     path: "./rule_provider/Akrab.yaml"
     interval: 100
+  Bank:
+    type: file
+    behavior: domain
+    url: https://raw.githubusercontent.com/wikann/Rule/main/Direct.yaml
+    path: "./rule_provider/Bank.yaml"
+    interval: 100
   ADS:
     type: file
     behavior: domain
@@ -235,6 +241,18 @@ proxy-groups:
   - "PING"
   - "LB SG"
   - "LB ID"
+- name: Bank
+  type: select
+  use:
+  - "ID"
+  - "SG"
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - "PING"
+  - "LB SG"
+  - "LB ID"
 - name: Facebook
   type: select
   use:
@@ -329,4 +347,5 @@ rules:
 - RULE-SET,18+,18+
 - RULE-SET,ADS,REJECT
 - RULE-SET,Akrab,DIRECT
+- RULE-SET,Bank,Bank
 - MATCH,GLOBAL
