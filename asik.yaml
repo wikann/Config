@@ -198,7 +198,7 @@ proxy-providers:
   "SG":
     type: http
     path: "./confs/SG.yaml"
-    url: https://raw.githubusercontent.com/wikann/Akun/main/SG.yaml
+    url: https://raw.githubusercontent.com/wikann/Akun/main/SG.yaml?token=GHSAT0AAAAAAB3UYCU2W3WDT24RO3KII4RYY5TSNCQ
     health-check:
       enable: true
       url: http://www.gstatic.com/generate_204
