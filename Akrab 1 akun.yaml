@@ -1,0 +1,268 @@
+---
+rule-providers:
+  Akrab:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/Akrab.yaml
+    path: "./rule_provider/Akrab.yaml"
+    interval: 100
+  ADS:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/ADS.yaml
+    path: "./rule_provider/ads.yaml"
+    interval: 100
+  Bank:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/bank.yaml
+    path: "./rule_provider/Bank.yaml"
+    interval: 100
+  Instagram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/Instagram.yaml
+    path: "./rule_provider/ig.yaml"
+    interval: 100
+  Facebook:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/Facebook.yaml
+    path: "./rule_provider/fb.yaml"
+    interval: 100
+  Twitter:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/Twitter.yaml
+    path: "./rule_provider/tw.yaml"
+    interval: 100
+  YouTube:
+    type: http
+    behavior: classical
+    path: "./rule_provider/Youtube.yaml"
+    url: https://raw.githubusercontent.com/wikann/Rule/main/YouTube.yaml
+    interval: 100
+  Speedtest:
+    type: http
+    behavior: classical
+    path: "./rule_provider/Speedtest.yaml"
+    url: https://raw.githubusercontent.com/wikann/Rule/main/Speedtest.yaml
+    interval: 100
+  18+:
+    type: http
+    behavior: domain
+    url: https://raw.githubusercontent.com/wikann/Rule/main/porn.yaml
+    path: "./rule_provider/porn.yaml"
+    interval: 100
+  TikTok:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/TikTok.yaml
+    path: "./rule_provider/TikTok.yaml"
+    interval: 100
+  Telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/Telegram.yaml
+    path: "./rule_provider/telegram.yaml"
+    interval: 100
+proxy-providers:
+  Akun:
+    type: file
+    path: "./proxy_provider/Akun.yaml"
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+proxy-groups:
+- name: PRANA
+  type: select
+  use:
+  - Akun
+  proxies:
+  - PING
+  - LB Akun
+- name: LB Akun
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - Akun
+  url: http://www.gstatic.com/generate_204
+  interval: '300'
+- name: PING
+  type: url-test
+  disable-udp: false
+  use:
+  - Akun
+  url: http://www.gstatic.com/generate_204
+  interval: '300'
+  tolerance: '100'
+- name: Instagram
+  type: select
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+- name: Bank
+  type: select
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+- name: Facebook
+  type: select
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+- name: TikTok
+  type: select
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+- name: Twitter
+  type: select
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+- name: Telegram
+  type: select
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+- name: YouTube
+  type: select
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+- name: Speedtest
+  type: select
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+- name: 18+
+  type: select
+  disable-udp: false
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+- name: Akrab
+  type: select
+  disable-udp: false
+  use:
+  - Akun
+  proxies:
+  - PRANA
+  - DIRECT
+  - REJECT
+  - PING
+  - LB Akun
+dns:
+  nameserver:
+  - 192.168.8.1
+  - 8.8.8.8
+  - 8.8.4.4
+  - https://dns.adguard.com/dns-query
+  - https://dns.google/dns-query
+  - tls://dns.adguard.com
+  - tls://dns.google
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 0.0.0.0:7874
+  fake-ip-filter:
+  - "+.*"
+  default-nameserver:
+  - 192.168.9.1
+  - 192.168.8.1
+  - 8.8.8.8
+  - 8.8.4.4
+redir-port: 7892
+tproxy-port: 7895
+port: 7890
+socks-port: 7891
+mixed-port: 7893
+mode: global
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: reyre
+bind-address: "*"
+external-ui: "/usr/share/openclash/ui"
+ipv6: false
+tun:
+  enable: true
+  stack: system
+  device: utun
+  auto-route: false
+  auto-detect-interface: false
+  dns-hijack:
+  - tcp://any:53
+profile:
+  store-selected: true
+  store-fake-ip: true
+rules:
+- DST-PORT,7895,REJECT
+- DST-PORT,7892,REJECT
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- DST-PORT,7895,REJECT
+- DST-PORT,7892,REJECT
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- IP-CIDR,198.18.0.1/16,REJECT,no-resolve
+- RULE-SET,Bank,Bank
+- RULE-SET,Instagram,Instagram
+- RULE-SET,TikTok,TikTok
+- RULE-SET,Facebook,Facebook
+- RULE-SET,Twitter,Twitter
+- RULE-SET,YouTube,YouTube
+- RULE-SET,Speedtest,Speedtest
+- RULE-SET,Telegram,Telegram
+- RULE-SET,18+,18+
+- RULE-SET,ADS,REJECT
+- RULE-SET,Akrab,Akrab
+- MATCH,GLOBAL
+geodata-loader: memconservative
+tcp-concurrent: true
