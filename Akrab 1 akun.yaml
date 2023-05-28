@@ -68,7 +68,7 @@ rule-providers:
     interval: 100
 proxy-providers:
   Akun:
-    type: file
+    type: http
     path: "./proxy_provider/Akun.yaml"
     url: https://raw.githubusercontent.com/wikann/Akun-umum/main/Akun.yaml
     health-check:
