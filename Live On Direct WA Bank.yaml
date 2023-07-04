@@ -1,0 +1,134 @@
+---
+rule-providers:
+  WA:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/WA.yaml
+    path: "./rule_provider/Akrab.yaml"
+    interval: 100
+  Bank:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/bank.yaml
+    path: "./rule_provider/Akrab.yaml"
+    interval: 100
+  ADS:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/wikann/Rule/main/ADS.yaml
+    path: "./rule_provider/ads.yaml"
+    interval: 100
+  18+:
+    type: http
+    behavior: domain
+    url: https://raw.githubusercontent.com/wikann/Rule/main/porn.yaml
+    path: "./rule_provider/porn.yaml"
+    interval: 100
+
+proxy-providers:
+  Akun:
+    type: http
+    path: "./proxy_provider/Akun.yaml"
+    url: https://raw.githubusercontent.com/wikann/Akun-umum/main/Akun.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+proxy-groups:
+
+- name: PING
+  type: url-test
+  disable-udp: false
+  use:
+  - Akun
+  url: http://www.gstatic.com/generate_204
+  interval: '300'
+  tolerance: '100'
+- name: LB Akun
+  type: load-balance
+  strategy: round-robin
+  disable-udp: false
+  use:
+  - Akun
+  url: http://www.gstatic.com/generate_204
+  interval: '300'
+  tolerance: '100'
+
+- name: WA
+  type: select
+  use:
+  - Akun
+  proxies:
+  - DIRECT
+  - PING
+  - LB Akun
+
+- name: Bank
+  type: select
+  use:
+  - Akun
+  proxies:
+  - DIRECT
+  - PING
+  - LB Akun
+
+- name: 18+
+  type: select
+  disable-udp: false
+  proxies:
+  - REJECT
+  - PING
+  - LB Akun
+
+dns:
+  nameserver:
+  - 192.168.8.1
+  - 8.8.8.8
+  - 8.8.4.4
+  - https://dns.adguard.com/dns-query
+  - https://dns.google/dns-query
+  - tls://dns.adguard.com
+  - tls://dns.google
+  enable: true
+  ipv6: false
+  enhanced-mode: redir-host
+  listen: 0.0.0.0:7874
+  fake-ip-filter:
+  - "+.*"
+  default-nameserver:
+  - 192.168.9.1
+  - 192.168.8.1
+  - 8.8.8.8
+  - 8.8.4.4
+redir-port: 7892
+tproxy-port: 7895
+port: 7890
+socks-port: 7891
+mixed-port: 7893
+mode: global
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: reyre
+bind-address: "*"
+external-ui: "/usr/share/openclash/ui"
+ipv6: false
+tun:
+  enable: true
+  stack: system
+  device: utun
+  auto-route: false
+  auto-detect-interface: false
+  dns-hijack:
+  - tcp://any:53
+profile:
+  store-selected: true
+  store-fake-ip: true
+rules:
+- RULE-SET,18+,18+
+- RULE-SET,ADS,REJECT
+- RULE-SET,Bank,Bank
+- RULE-SET,WA,WA
+- MATCH,GLOBAL
+geodata-loader: memconservative
+tcp-concurrent: true
