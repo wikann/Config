@@ -4,13 +4,13 @@ rule-providers:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/WA.yaml
-    path: "./rule_provider/Akrab.yaml"
+    path: "./rule_provider/WA.yaml"
     interval: 100
   Bank:
     type: http
     behavior: classical
     url: https://raw.githubusercontent.com/wikann/Rule/main/bank.yaml
-    path: "./rule_provider/Akrab.yaml"
+    path: "./rule_provider/Bank.yaml"
     interval: 100
   ADS:
     type: http
