@@ -49,10 +49,10 @@ proxies:
         Host: id.dogayengvpn.my.id
     udp: true
 proxy-groups:
-  - name: Wikan
+  - name: Akun
     type: select
     proxies:
-      - wikan
+      - Akun
       - DIRECT
 rules:
-  - MATCH,Wikan
+  - MATCH,Akun
