@@ -32,21 +32,21 @@ dns:
     - 1.1.1.1
     - 112.215.203.254
 proxies:
-  - name: wikan
-    server: 104.17.3.81
-    port: 80
-    type: vmess
-    uuid: 337e0a3a-bab4-4891-a8ed-ff744476b46c
+  - name: Live On
+    server: 104.16.53.111
+    port: 443
+    type: vless
+    uuid: 7d598b8f-f0ef-4d3c-b3ff-2b86fccd2f31
     alterId: 0
     cipher: auto
     tls: false
     skip-cert-verify: true
-    servername: sg.dogayengvpn.my.id
+    servername: id.dogayengvpn.my.id
     network: ws
     ws-opts:
-      path: /vmess
+      path: /vless
       headers:
-        Host: sg.dogayengvpn.my.id
+        Host: id.dogayengvpn.my.id
     udp: true
 proxy-groups:
   - name: Wikan
