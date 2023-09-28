@@ -32,7 +32,7 @@ dns:
     - 1.1.1.1
     - 112.215.203.254
 proxies:
-  - name: Live On
+  - name: LiveOn
     server: 104.16.53.111
     port: 443
     type: vless
@@ -49,10 +49,10 @@ proxies:
         Host: id.dogayengvpn.my.id
     udp: true
 proxy-groups:
-  - name: Akun
+  - name: LiveOn
     type: select
     proxies:
-      - Akun
+      - LiveOn
       - DIRECT
 rules:
   - MATCH,Akun
